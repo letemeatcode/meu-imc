@@ -1,34 +1,53 @@
 import streamlit as st
 
-# Títol i configuració de la pàgina
-st.set_page_config(page_title="Calculadora IMC", page_icon="⚖️")
-st.title("⚖️ Calculadora d'IMC")
+# Configuració de la pàgina (títol que surt a la pestanya del navegador)
+st.set_page_config(page_title="Calculadora IMC Pro", page_icon="⚖️")
 
-# Formulari d'entrada
-with st.container():
-    nom = st.text_input("Com et dius?", placeholder="Escriu el teu nom aquí")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        pes = st.number_input("Pes (kg)", min_value=1.0, max_value=300.0, value=70.0, step=0.1)
-    with col2:
-        alcada_cm = st.number_input("Altura (cm)", min_value=50.0, max_value=250.0, value=170.0, step=1.0)
+# Títol principal amb estil
+st.title("Calculadora d'Índex de Massa Corporal")
+st.markdown("---")
 
-# Botó per calcular
-if st.button("Calcular el meu estat"):
+# Secció d'entrada de dades
+st.subheader("Introdueix les teves dades:")
+nom = st.text_input("Com et dius?", placeholder="Escriu el teu nom...")
+
+col1, col2 = st.columns(2)
+with col1:
+    pes = st.number_input("El teu pes (en kg)", min_value=1.0, max_value=250.0, value=70.0, step=0.1)
+with col2:
+    alcada_cm = st.number_input("La teva altura (en cm)", min_value=50, max_value=250, value=170)
+
+# Botó de càlcul
+if st.button("Calcular el meu estat 🚀"):
     if nom:
+        # Càlcul de l'IMC
         alcada_m = alcada_cm / 100
         imc = pes / (alcada_m ** 2)
         
         st.divider()
-        st.subheader(f"Resultats per a {nom}:")
-        st.metric(label="El teu IMC", value=f"{imc:.2f}")
+        st.header(f"Resultats per a {nom}")
         
+        # Mostrem el número de l'IMC de forma visual
+        st.metric(label="El teu IMC és de:", value=f"{imc:.2f}")
+
+        # Lògica amb colors i missatges
         if imc < 18.5:
-            st.warning("Hauries de guanyar pes. Estàs per sota del pes recomanat.")
+            st.warning("⚠️ **Estat: Baix pes.**")
+            st.info("Hauries de guanyar una mica de pes per estar en el rang saludable.")
+        
         elif 18.5 <= imc <= 24.9:
-            st.success("Estàs en el teu pes ideal. Molt bé!")
+            st.success("✅ **Estat: Pes ideal!**")
+            st.write("Estàs en un rang de pes saludable. Continua cuidant-te!")
+            st.balloons() # <--- Això llança els globus!
+            
         else:
-            st.error("Hauries de perdre pes. Estàs per sobre del pes recomanat.")
+            st.error("⚠️ **Estat: Sobrepès.**")
+            st.info("Hauries de considerar perdre una mica de pes per millorar la teva salut.")
+            
+        # Nota a peu de pàgina
+        st.caption("Nota: L'IMC és orientatiu. Consulta sempre a un professional de la salut.")
     else:
-        st.info("Si us plau, introdueix el teu nom per continuar.")
+        st.error("Si us plau, posa el teu nom per personalitzar el resultat.")
+
+st.markdown("---")
+st.markdown("💻 *Creat amb Python i Streamlit*")
