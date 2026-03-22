@@ -49,5 +49,3 @@ if st.button("Calcular el meu estat 🚀"):
     else:
         st.error("Si us plau, posa el teu nom per personalitzar el resultat.")
 
-st.markdown("---")
-st.markdown("💻 *Creat amb Python i Streamlit*")
