@@ -13,7 +13,7 @@ nom = st.text_input("Com et dius, gilipollas?", placeholder="Escriu el teu nom..
 
 col1, col2 = st.columns(2)
 with col1:
-    pes = st.number_input("El teu pes (en kg)", min_value=1.0, max_value=250.0, value=70.0, step=0.1)
+    pes = st.number_input("El teu pes (en kg)", placeholder="Ex.70" min_value=1.0, max_value=250.0, step=0.1)
 with col2:
     alcada_cm = st.number_input("La teva altura (en cm)", min_value=50, max_value=250, value=170)
 
