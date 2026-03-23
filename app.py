@@ -9,7 +9,7 @@ st.markdown("---")
 
 # Secció d'entrada de dades
 st.subheader("Introdueix les teves dades:")
-nom = st.text_input("Com et dius?", placeholder="Escriu el teu nom...")
+nom = st.text_input("Com et dius, gilipollas?", placeholder="Escriu el teu nom...")
 
 col1, col2 = st.columns(2)
 with col1:
